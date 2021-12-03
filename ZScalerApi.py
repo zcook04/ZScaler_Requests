@@ -7,10 +7,7 @@ load_dotenv('.env')
 
 class ZScalerApi():
     def __init__(self):
-        self.timestamp, self.api_key = self.obfuscateApiKey()
         self.url = getenv('ZSCALER_URL')
-        self.username = getenv('ZSCALER_USERNAME')
-        self.password = getenv('ZSCALER_PASSWORD')
         self.session = self.login()
  
     def obfuscateApiKey (self):
@@ -28,11 +25,12 @@ class ZScalerApi():
 
     def login(self):
         session = requests.Session()
+        timestamp, api_key = self.obfuscateApiKey()
         payload = {
-            'username': self.username,
-            'password': self.password,
-            'apiKey': self.api_key,
-            'timestamp': self.timestamp
+            'username': getenv('ZSCALER_USERNAME'),
+            'password': getenv('ZSCALER_PASSWORD'),
+            'apiKey': api_key,
+            'timestamp': timestamp
         }
         headers = {
             'Content-Type': 'application/json',
