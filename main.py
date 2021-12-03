@@ -1,6 +1,5 @@
-from ZScalerApi import ZScalerApi
+from ZScalerRequest import ZScalerRequest
 
-zscaler = ZScalerApi()
+zscaler = ZScalerRequest()
 
 print(zscaler.get_admin_users())
-
